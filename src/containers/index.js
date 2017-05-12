@@ -8,3 +8,5 @@ export LoginSuccess from './LoginSuccess/LoginSuccess';
 export Survey from './Survey/Survey';
 export NotFound from './NotFound/NotFound';
 export Pagination from './Pagination/Pagination';
+export Starwars from './Starwars/Starwars';
+export StarwarsSearch from './Starwars/StarwarsSearch';

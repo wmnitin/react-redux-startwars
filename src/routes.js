@@ -12,6 +12,8 @@ import {
     Survey,
     NotFound,
     Pagination,
+    Starwars,
+    StarwarsSearch
   } from 'containers';
 
 export default (store) => {
@@ -52,7 +54,8 @@ export default (store) => {
       <Route path="pagination" component={Pagination}/>
       <Route path="survey" component={Survey}/>
       <Route path="widgets" component={Widgets}/>
-
+      <Route path="starwars" component={Starwars}/>
+      <Route path="StarwarsSearch" component={StarwarsSearch}/>
       { /* Catch all route */ }
       <Route path="*" component={NotFound} status={404} />
     </Route>

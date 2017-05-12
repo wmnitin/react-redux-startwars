@@ -34,6 +34,29 @@ export default class ApiClient {
         request.end((err, { body } = {}) => err ? reject(body || err) : resolve(body));
       }));
   }
+  starWarsLogin(data) {
+    return new Promise((resolve, reject) => {
+      superagent.get('https://swapi.co/api/people/?search=' + data)
+        .end((err, res) => {
+          if (err) {
+            reject(res || err);
+          }
+          resolve(res.body);
+        });
+    });
+  }
+
+  searchPlanets(data) {
+    return new Promise((resolve, reject) => {
+      superagent.get('https://swapi.co/api/planets/?search=' + data)
+        .end((err, res) => {
+          if (err) {
+            reject(res || err);
+          }
+          resolve(res.body);
+        });
+    });
+  }
   /*
    * There's a V8 bug where, when using Babel, exporting classes with only
    * constructors sometimes fails. Until it's patched, this is a solution to
@@ -44,5 +67,5 @@ export default class ApiClient {
    *
    * Remove it at your own risk.
    */
-  empty() {}
+  empty() { }
 }

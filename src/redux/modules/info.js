@@ -1,44 +1,61 @@
 const LOAD = 'redux-example/LOAD';
-const LOAD_SUCCESS = 'redux-example/LOAD_SUCCESS';
-const LOAD_FAIL = 'redux-example/LOAD_FAIL';
 
 const initialState = {
-  loaded: false
+  login: 'false'
 };
 
 export default function info(state = initialState, action = {}) {
   switch (action.type) {
     case LOAD:
       return {
-        ...state,
-        loading: true
+        ...state
       };
-    case LOAD_SUCCESS:
+    case 'LOGIN_SUCCESS':
       return {
         ...state,
-        loading: false,
-        loaded: true,
-        data: action.result
+        login: 'false',
+        loginData: action.result
       };
-    case LOAD_FAIL:
+    case 'LOGIN_FAIL':
       return {
         ...state,
-        loading: false,
-        loaded: false,
-        error: action.error
+        login: 'false',
+        loginErr: action.error
+      };
+    case 'MANAGE_LOGIN':
+      return {
+        ...state,
+        login: action.value
+      };
+    case 'SEARCH_SUCCESS':
+      return {
+        ...state,
+        searchData: action.result
+      };
+    case 'SEARCH_FAIL':
+      return {
+        ...state,
+        searchError: action.error
       };
     default:
       return state;
   }
 }
 
-export function isLoaded(globalState) {
-  return globalState.info && globalState.info.loaded;
+export function starWarsLogin(data) {
+  return {
+    types: [LOAD, 'LOGIN_SUCCESS', 'LOGIN_FAIL'],
+    promise: (client) => client.starWarsLogin(data)
+  };
 }
 
-export function load() {
+export function loginState(value) {
+  return { type: 'MANAGE_LOGIN', value };
+}
+
+export function searchPlanets(data) {
   return {
-    types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-    promise: (client) => client.get('/loadInfo')
+    types: [LOAD, 'SEARCH_SUCCESS', 'SEARCH_FAIL'],
+    promise: (client) => client.searchPlanets(data)
   };
 }
